@@ -5,7 +5,7 @@ grammar main;
 compilationUnit : mainClass (classDeclaration)*;
 
 mainClass:('class' Identifier Ocarl 'public' 'static' 'void' 'main' Obrac 'String' '[' ']' Ws? Identifier Cbrac Ocarl statement? Ccarl Ccarl);
-classDeclaration:'class' Identifier Ocarl ((Identifier Ws Identifier Scol Ws?|varDeclaration)* (methodDeclaration|statement)*|commint_mul|commint_singl)Ccarl;
+classDeclaration:'class' Identifier Ocarl ((Identifier Ws Identifier Scol Ws?|varDeclaration)* (methodDeclaration|statement)*)Ccarl;
 varDeclaration : type Identifier Scol;
 
 methodDeclaration : 'public' type Identifier Obrac ( type Identifier ( Comma type Identifier )* )? Cbrac Ocarl ( varDeclaration )* ( statement )* 'return' expression Scol Ccarl ;
@@ -34,14 +34,15 @@ expression : expression '&&' expression
            | Identifier
            |Quot Identifier Quot
            | 'this'
-           | 'new' 'int' '[' expression ']'
-           | 'new' Identifier Obrac Cbrac
+           | 'new' 'int' '[' expression ']' Scol?
+           | 'new' Identifier Obrac Cbrac Scol?
            | '!' expression
-           | Obrac expression Cbrac ;
+           | Obrac expression Cbrac;
 
-commint_mul: '/*'  (Identifier|'$'|'!'|'@'|'#'|'$'|'%'|'^'|'&'|'*'|'('|')'|'_'|'+'|'-'|'class'|','|WS)*  '*/' ;
 
-commint_singl: '//'  (Identifier|'$'|'!'|'@'|'#'|'$'|'%'|'^'|'&'|'*'|'('|')'|'_'|'+'|'-'|'class'|','|WS)*;
+commint_mul: '/*'  (Identifier|Quot Identifier Quot|'$'|'!'|'@'|'#'|'$'|'%'|'^'|'&'|'*'|'('|')'|'_'|'+'|'-'|'class'|','|'new'|'if'|'true'|'false'|WS)*  '*/' ;
+
+commint_singl: '//'  (Identifier|Quot Identifier Quot|'$'|'!'|'@'|'#'|'$'|'%'|'^'|'&'|'*'|'('|')'|'_'|'+'|'-'|'class'|','|'new'|'if'|'true'|'false'|WS)*;
 
 
 //Tokens
