@@ -40,7 +40,7 @@ expression : expression '&&' expression
            | Obrac expression Cbrac;
 
 
-commint_mul: '/*'  (Identifier|Quot Identifier Quot|'$'|'!'|'@'|'#'|'$'|'%'|'^'|'&'|'*'|'('|')'|'_'|'+'|'-'|'class'|','|'new'|'if'|'true'|'false'|WS)*  '*/' ;
+commint_mul: '/*'(Identifier|Quot Identifier Quot|'$'|'!'|'@'|'#'|'$'|'%'|'^'|'&'|'*'|'('|')'|'_'|'+'|'-'|'class'|','|'new'|'if'|'true'|'false'|WS)*  '*/' ;
 
 commint_singl: '//'  (Identifier|Quot Identifier Quot|'$'|'!'|'@'|'#'|'$'|'%'|'^'|'&'|'*'|'('|')'|'_'|'+'|'-'|'class'|','|'new'|'if'|'true'|'false'|WS)*;
 
